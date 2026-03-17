@@ -483,7 +483,7 @@
 											"    pm.collectionVariables.set(\"cardId\", response.id);\r",
 											"});\r",
 											"\r",
-											""
+											"console.log(response);"
 										],
 										"type": "text/javascript",
 										"packages": {},

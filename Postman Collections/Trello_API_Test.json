@@ -640,6 +640,42 @@
 						},
 						{
 							"name": "Get a card",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e58be453-2f8f-4abd-8952-dbd2279e772d",
+										"exec": [
+											"//Check if response status code is 200.\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"})\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"//Check if card ID is correct\r",
+											"pm.test(\"Card ID is correct\", function () {\r",
+											"    pm.expect(response.id).to.be.eql(pm.collectionVariables.get('cardId'));\r",
+											"});\r",
+											"\r",
+											"//Check if card name is correct\r",
+											"pm.test(\"Card Name is correct\", function () {\r",
+											"    pm.expect(response.name).to.be.eql(pm.collectionVariables.get('cardName'));\r",
+											"});\r",
+											"\r",
+											"//Check if card is in the correct List\r",
+											"pm.test(\"Card is in the correct List\", function () {\r",
+											"    pm.expect(response.idList).to.be.eql(pm.collectionVariables.get('listId'));\r",
+											"});\r",
+											"\r",
+											"console.log(response);"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
 							"id": "a10a8344-1bc3-4d67-84b1-04bb1157a34e",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -648,13 +684,24 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseURL}}/cards/:id",
+									"raw": "{{baseURL}}/1/cards/:id?key={{trelloKey}}&token={{trelloToken}}",
 									"host": [
 										"{{baseURL}}"
 									],
 									"path": [
+										"1",
 										"cards",
 										":id"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trelloKey}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trelloToken}}"
+										}
 									],
 									"variable": [
 										{
@@ -663,6 +710,18 @@
 										}
 									]
 								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"id": "43090a73-14d2-4cfc-861a-6d60686ee41f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
 							},
 							"response": []
 						}

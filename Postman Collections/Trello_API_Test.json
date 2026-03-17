@@ -660,12 +660,12 @@
 											"\r",
 											"//Check if card name is correct\r",
 											"pm.test(\"Card Name is correct\", function () {\r",
-											"    pm.expect(response.name).to.be.eql(pm.collectionVariables.get('cardName'));\r",
+											"    pm.expect(response.name).to.be.eql(\"Card \" + pm.collectionVariables.get('cardSuffix'));\r",
 											"});\r",
 											"\r",
 											"//Check if card is in the correct List\r",
 											"pm.test(\"Card is in the correct List\", function () {\r",
-											"    pm.expect(response.idList).to.be.eql(pm.collectionVariables.get('listId'));\r",
+											"    pm.expect(response.idList).to.be.eql(pm.collectionVariables.get('todoListId'));\r",
 											"});\r",
 											"\r",
 											"console.log(response);"
@@ -715,6 +715,43 @@
 						},
 						{
 							"name": "Delete a card",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "9a46068d-7145-4c98-acbc-15c9d4e0364e",
+										"exec": [
+											"const cardToDelete = pm.collectionVariables.get(\"cardId\");\r",
+											"pm.collectionVariables.set('cardToDelete', cardToDelete);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "a2e61c36-3ac8-454c-a384-0f83081e14f3",
+										"exec": [
+											"//Check if response status code is 200.\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"})\r",
+											"\r",
+											"//Check if card is deleted\r",
+											"pm.test(\"Card is deleted\", function () {\r",
+											"    pm.expect(pm.collectionVariables.get('cardToDelete').to.be.undefined)\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
 							"id": "43090a73-14d2-4cfc-861a-6d60686ee41f",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -745,7 +782,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "{{cardId}}"
+											"value": "{{cardToDelete}}"
 										}
 									]
 								}
@@ -1895,7 +1932,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "203253fd-dd28-4715-ac59-33bbbce77988",
+				"id": "41104fb0-3a20-47f5-b7d3-45eb797c061e",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -1907,7 +1944,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "fc57b779-2735-4a9b-befd-230af5c0e570",
+				"id": "8d14d1ec-4fea-498e-b84d-a3503ea836d8",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -1932,7 +1969,7 @@
 		},
 		{
 			"key": "boardId",
-			"value": "69b8875205a516d22e37b11e"
+			"value": "69b9db24f7e16ca7fb4117a6"
 		},
 		{
 			"key": "listId",
@@ -1940,11 +1977,11 @@
 		},
 		{
 			"key": "cardId",
-			"value": "69b74308ed944a535bae097b"
+			"value": "69b9e39ae4d4d3030bc8ace1"
 		},
 		{
 			"key": "todoListId",
-			"value": "69b8430a222ef1c2c73f853d"
+			"value": "69b9e091b2994bfa94d628d0"
 		},
 		{
 			"key": "doneListId",
@@ -1965,11 +2002,11 @@
 		},
 		{
 			"key": "boardSuffix",
-			"value": 1
+			"value": 2
 		},
 		{
 			"key": "todolistSuffix",
-			"value": 4
+			"value": 6
 		},
 		{
 			"key": "donelistSuffix",
@@ -1990,6 +2027,10 @@
 		{
 			"key": "numberOfBoards",
 			"value": 0
+		},
+		{
+			"key": "cardToDelete",
+			"value": "69b9e39ae4d4d3030bc8ace1"
 		}
 	]
 }

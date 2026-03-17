@@ -635,6 +635,34 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Get a card",
+							"id": "a10a8344-1bc3-4d67-84b1-04bb1157a34e",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/cards/:id",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"cards",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{cardId}}"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"id": "3ca3a4af-d7aa-4426-a17a-08e0411e93cc"

@@ -481,7 +481,9 @@
 											"//Set card id to a collection variable for later use.\r",
 											"pm.test(\"idCard is stored as variable\", () => {\r",
 											"    pm.collectionVariables.set(\"cardId\", response.id);\r",
-											"});"
+											"});\r",
+											"\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {},

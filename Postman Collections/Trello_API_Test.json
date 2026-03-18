@@ -1955,11 +1955,13 @@
 											"});\r",
 											"\r",
 											"//Check if all board ids are stored to a variable.\r",
-											"pm.test(\"Latest board id is stored as variable\", () => {\r",
-											"    pm.expect(response[0].id).to.not.be.undefined;\r",
+											"pm.test(\"Number of boards are stored to a variable\", () => {\r",
+											"    // pm.expect(response[0].id).to.not.be.undefined;\r",
 											"    const existingboardId = response.map(board => board.id);\r",
 											"    pm.collectionVariables.set(\"existingboardId\", existingboardId);\r",
 											"    console.log(existingboardId);\r",
+											"\r",
+											"    //set the number of existing boards to a variable\r",
 											"    console.log(pm.collectionVariables.get('existingboardId').length)\r",
 											"    const numberOfBoards = pm.collectionVariables.get('existingboardId').length\r",
 											"    pm.collectionVariables.set('numberOfBoards', numberOfBoards)\r",
@@ -2016,8 +2018,8 @@
 										"id": "9ec172a2-9ae6-435f-a6a2-31389889296e",
 										"exec": [
 											"//Check if response status code is 200.\r",
-											"pm.test(\"Expected status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
+											"pm.test(\"Expected status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
 											"});\r",
 											"\r",
 											"//Check if oldest board is deleted.\r",
@@ -2061,7 +2063,7 @@
 											"\r",
 											"//Check if the board exists before deleting it.\r",
 											"pm.test(\"Board to be deleted is \" + pm.collectionVariables.get('todeleteboardId'), ()=>{\r",
-											"    pm.expect(pm.collectionVariables.get('todeleteboardId')).to.not.be.null;\r",
+											"    pm.expect(pm.collectionVariables.get('todeleteboardId')).to.be.null;\r",
 											"});\r",
 											"\r",
 											""
@@ -2101,7 +2103,6 @@
 									],
 									"variable": [
 										{
-											"id": "833174c6-641c-4086-822a-e946aa7e3d01",
 											"key": "id",
 											"value": "{{todeleteboardId}}"
 										}

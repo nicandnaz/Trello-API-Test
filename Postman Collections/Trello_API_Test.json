@@ -1956,6 +1956,10 @@
 											"    pm.expect(response).to.be.empty;\r",
 											"});\r",
 											"\r",
+											"//If boards exists, store to a variable\r",
+											"const existingboardId = response.map(board => board.id);\r",
+											"pm.collectionVariables.set(\"existingboardId\", existingboardId);\r",
+											"\r",
 											"\r",
 											""
 										],

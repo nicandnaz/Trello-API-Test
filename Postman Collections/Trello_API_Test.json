@@ -2019,7 +2019,13 @@
 											"    pm.response.to.have.status(400);\r",
 											"});\r",
 											"\r",
-											""
+											"//Check that no boards are available\r",
+											"pm.test(\"No boards are available\", function () {\r",
+											"    const response = pm.response.json();\r",
+											"    const existingboardId = pm.collectionVariables.get('existingboardId');\r",
+											"    pm.expect(existingboardId).length.to.be.empty;\r",
+											"    pm.expect(response).to.be.empty;\r",
+											"});"
 										],
 										"type": "text/javascript",
 										"packages": {},
@@ -2041,6 +2047,8 @@
 											"pm.test(\"Board to be deleted is \" + pm.collectionVariables.get('todeleteboardId'), ()=>{\r",
 											"    pm.expect(pm.collectionVariables.get('todeleteboardId')).to.be.undefined;\r",
 											"});\r",
+											"\r",
+											"\r",
 											"\r",
 											""
 										],

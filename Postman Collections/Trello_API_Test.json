@@ -1927,6 +1927,194 @@
 				}
 			],
 			"id": "fcfea6a7-45fa-4dc4-af0e-8ed59c95f98e"
+		},
+		{
+			"name": "Negative Scenarios",
+			"item": [
+				{
+					"name": "No boards to delete",
+					"item": [
+						{
+							"name": "Get all boards",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ffab6830-1c3d-4d7d-994b-6c7f20296267",
+										"exec": [
+											"//Check if response status code is 200.\r",
+											"pm.test(\"Expected status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"//Check if latest board id is stored as variable.\r",
+											"pm.test(\"Latest board id is stored as variable\", () => {\r",
+											"    pm.collectionVariables.set(\"boardId\", response[0].id);\r",
+											"});\r",
+											"\r",
+											"//Check if all board ids are stored to a variable.\r",
+											"pm.test(\"Latest board id is stored as variable\", () => {\r",
+											"    pm.expect(response[0].id).to.not.be.undefined;\r",
+											"    const existingboardId = response.map(board => board.id);\r",
+											"    pm.collectionVariables.set(\"existingboardId\", existingboardId);\r",
+											"    console.log(existingboardId);\r",
+											"    console.log(pm.collectionVariables.get('existingboardId').length)\r",
+											"    const numberOfBoards = pm.collectionVariables.get('existingboardId').length\r",
+											"    pm.collectionVariables.set('numberOfBoards', numberOfBoards)\r",
+											"    });\r",
+											"\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "26f3d6f3-fbb7-4037-ae13-f4142169449a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/1/members/me/boards?key=89e1a4286879fe1271255f2cba9ce662&token=ATTA3c4b5c7ed6547d3aba1cf88bdf133a13808f1d0493312dfa60d67e5dff1c135c1362684C",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"1",
+										"members",
+										"me",
+										"boards"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "89e1a4286879fe1271255f2cba9ce662"
+										},
+										{
+											"key": "token",
+											"value": "ATTA3c4b5c7ed6547d3aba1cf88bdf133a13808f1d0493312dfa60d67e5dff1c135c1362684C"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete all boards",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "9ec172a2-9ae6-435f-a6a2-31389889296e",
+										"exec": [
+											"//Check if response status code is 200.\r",
+											"pm.test(\"Expected status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"//Check if oldest board is deleted.\r",
+											"pm.test(\"Board is deleted\", () => {\r",
+											"    const existingBoardIdSearch = pm.collectionVariables.get('existingboardId');\r",
+											"    const deletedBoardIdSearch = pm.collectionVariables.get('todeleteboardId')\r",
+											"\r",
+											"    const boardIdcheck = existingBoardIdSearch.find(id => id === deletedBoardIdSearch);\r",
+											"    pm.expect(boardIdcheck).to.be.undefined;\r",
+											"});\r",
+											"\r",
+											"let existingBoards = pm.collectionVariables.get('numberOfBoards')\r",
+											"\r",
+											"//Loop for each count to creat cards\r",
+											"if (existingBoards > 0) {\r",
+											"    existingBoards = existingBoards - 1;\r",
+											"    pm.collectionVariables.set('numberOfBoards', existingBoards);\r",
+											"    pm.execution.setNextRequest(\"Delete all boards\");\r",
+											"} if (existingBoards == 0) {\r",
+											"    pm.execution.setNextRequest(null);\r",
+											"}\r",
+											"\r",
+											"console.log(pm.collectionVariables.get('existingboardId'));\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "ba696d16-99cb-4e5f-9e41-a0969cddf968",
+										"exec": [
+											"//Get existing board IDs and store oldest board ID to delete.\r",
+											"const existingboardId = pm.collectionVariables.get('existingboardId');\r",
+											"const todeleteboardId = existingboardId.shift();\r",
+											"pm.collectionVariables.set('todeleteboardId', todeleteboardId);\r",
+											"pm.collectionVariables.set('existingboardId', existingboardId);\r",
+											"\r",
+											"//Check if the board exists before deleting it.\r",
+											"pm.test(\"Board to be deleted is \" + pm.collectionVariables.get('todeleteboardId'), ()=>{\r",
+											"    pm.expect(pm.collectionVariables.get('todeleteboardId')).to.not.be.null;\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "0a7519ca-5422-4a77-b5f6-4ee2bf389bf4",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/1/boards/:id?key={{trelloKey}}&token={{trelloToken}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"1",
+										"boards",
+										":id"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trelloKey}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trelloToken}}"
+										}
+									],
+									"variable": [
+										{
+											"id": "833174c6-641c-4086-822a-e946aa7e3d01",
+											"key": "id",
+											"value": "{{todeleteboardId}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "f2a104c0-201e-4e7e-bde8-5e669e793501"
+				}
+			],
+			"id": "02cdb446-9256-4dbf-830d-c3e8a092fac6"
 		}
 	],
 	"event": [

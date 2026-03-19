@@ -1156,17 +1156,26 @@
 											"\r",
 											"const response = pm.response.json();\r",
 											"\r",
-											"//Check created label id\r",
+											"//Check created label id is a string and stored to a variable for later use.\r",
 											"pm.test(\"Label id is correct\", function () {\r",
 											"    pm.expect(response.id).to.be.string\r",
+											"    pm.collectionVariables.set(\"labelId\", response.id)\r",
 											"});\r",
 											"\r",
-											"\r",
 											"//Check label name\r",
+											"pm.test(\"Label name is correct\", function () {\r",
+											"    pm.expect(response.name).to.be.eql('label name')\r",
+											"});\r",
 											"\r",
-											"//Check label collectionVariables\r",
+											"//Check label color \r",
+											"pm.test(\"Label color is correct\", function () {\r",
+											"    pm.expect(response.color).to.be.eql('purple')\r",
+											"});\r",
 											"\r",
-											"//Check if under correct board id"
+											"//Check if under correct board id\r",
+											"pm.test(\"Label board id is correct\", function () {\r",
+											"    pm.expect(response.idBoard).to.be.eql(pm.collectionVariables.get(\"boardId\"))\r",
+											"});"
 										],
 										"type": "text/javascript",
 										"packages": {},
@@ -2349,6 +2358,10 @@
 		{
 			"key": "cardToDelete",
 			"value": "69b9e3f8a05a1aa5b3ddf3c7"
+		},
+		{
+			"key": "labelId",
+			"value": ""
 		}
 	]
 }

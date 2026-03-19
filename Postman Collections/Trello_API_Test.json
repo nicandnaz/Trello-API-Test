@@ -1169,13 +1169,31 @@
 											"\r",
 											"//Check label color \r",
 											"pm.test(\"Label color is correct\", function () {\r",
-											"    pm.expect(response.color).to.be.eql('purple')\r",
+											"    pm.expect(response.color).to.be.eql(pm.collectionVariables.get(\"labelColor\"))\r",
 											"});\r",
 											"\r",
 											"//Check if under correct board id\r",
 											"pm.test(\"Label board id is correct\", function () {\r",
 											"    pm.expect(response.idBoard).to.be.eql(pm.collectionVariables.get(\"boardId\"))\r",
 											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "3b92e609-bb34-4ce2-9520-990c16192581",
+										"exec": [
+											"const color = ['yellow' , 'purple', 'blue', 'red', 'green', 'orange', 'black', 'sky', 'pink', 'lime']\r",
+											"const i = Math.floor(Math.random() * color.length)\r",
+											"const labelColor = color[i]\r",
+											"pm.collectionVariables.set(\"labelColor\", labelColor)\r",
+											"\r",
+											"console.log(labelColor)\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {},
@@ -1191,7 +1209,7 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "{{baseURL}}/1/labels?name=label name&color=purple&idBoard={{boardId}}&key={{trelloKey}}&token={{trelloToken}}",
+									"raw": "{{baseURL}}/1/labels?name=label name&color={{labelColor}}&idBoard={{boardId}}&key={{trelloKey}}&token={{trelloToken}}",
 									"host": [
 										"{{baseURL}}"
 									],
@@ -1206,7 +1224,7 @@
 										},
 										{
 											"key": "color",
-											"value": "purple",
+											"value": "{{labelColor}}",
 											"description": "yellow, purple, blue, red, green, orange, black, sky, pink, lime"
 										},
 										{
@@ -2361,6 +2379,10 @@
 		},
 		{
 			"key": "labelId",
+			"value": ""
+		},
+		{
+			"key": "labelColor",
 			"value": ""
 		}
 	]

@@ -446,8 +446,10 @@
 											"\r",
 											"//Check if board id is correct\r",
 											"pm.test(\"Check if board id is correct\", function () {\r",
-											"    pm.expect(response[0].id).to.eql(pm.collectionVariables.get('boardIdid'));\r",
-											"});"
+											"    pm.expect(response[0].id).to.eql(pm.collectionVariables.get('boardId'));\r",
+											"});\r",
+											"\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {},
@@ -851,6 +853,18 @@
 										}
 									]
 								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"id": "2673b95f-dd9d-4e88-a65c-aecb1f74437f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
 							},
 							"response": []
 						}

@@ -430,7 +430,31 @@
 							"response": []
 						},
 						{
-							"name": "New Request",
+							"name": "Get memberships of a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "2f0e1262-d07c-4395-82fe-546c688beaf0",
+										"exec": [
+											"//Check if response status code is 200.\r",
+											"pm.test(\"Expected status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"//Check if board id is correct\r",
+											"pm.test(\"Check if board id is correct\", function () {\r",
+											"    pm.expect(response[0].id).to.eql(pm.collectionVariables.get('boardIdid'));\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
 							"id": "a33c67d4-3f2c-4cf9-bf43-54e6546dcb3c",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true

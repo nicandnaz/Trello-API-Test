@@ -428,6 +428,46 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "New Request",
+							"id": "a33c67d4-3f2c-4cf9-bf43-54e6546dcb3c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/1/boards/:id/memberships?key={{trelloKey}}&token={{trelloToken}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"1",
+										"boards",
+										":id",
+										"memberships"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trelloKey}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trelloToken}}"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{boardId}}"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"id": "72843094-43ab-407f-83a7-6bfe5ba33f19"

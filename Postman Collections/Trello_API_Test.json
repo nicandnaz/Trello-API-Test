@@ -1143,6 +1143,37 @@
 					"item": [
 						{
 							"name": "Create a label",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "30eca4ce-1731-4e7d-a154-3d59add01289",
+										"exec": [
+											"//Check if response status code is 200.\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"})\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"//Check created label id\r",
+											"pm.test(\"Label id is correct\", function () {\r",
+											"    pm.expect(response.id).to.be.string\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Check label name\r",
+											"\r",
+											"//Check label collectionVariables\r",
+											"\r",
+											"//Check if under correct board id"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
 							"id": "a1aaf3c0-c117-4831-9e7a-fc545d308a21",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true

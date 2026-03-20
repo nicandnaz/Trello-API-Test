@@ -1267,7 +1267,15 @@
 											"const labelColor = color[i]\r",
 											"pm.collectionVariables.set(\"labelColor\", labelColor)\r",
 											"\r",
-											"console.log(labelColor)\r",
+											"//This is to set the Label name to be unique for each run by providing different suffix.\r",
+											"let labelSuffix = pm.collectionVariables.get('labelSuffix', 1);\r",
+											"if (labelSuffix == 100){\r",
+											"    labelSuffix = 0\r",
+											"} else if (isNaN(labelSuffix)){\r",
+											"    labelSuffix = 1\r",
+											"}\r",
+											"labelSuffix++\r",
+											"pm.collectionVariables.set('labelSuffix', labelSuffix);\r",
 											""
 										],
 										"type": "text/javascript",
@@ -1289,22 +1297,22 @@
 											"\r",
 											"//Check if Label ID is unchanged\r",
 											"pm.test(\"Label ID is unchanged\", function () {\r",
-											"    pm.expect(response.id).to.eql(pm.collectionVariables.get(\"labelId\"));\r",
+											"    pm.expect(response.id).to.eql(pm.collectionVariables.get('labelId'));\r",
 											"});\r",
 											"\r",
 											"//Check if Label name is updated\r",
 											"pm.test(\"Label name is updated\", function () {\r",
-											"    pm.expect(response.name).to.eql(\"updated name 12\");\r",
+											"    pm.expect(response.name).to.eql('updated name ' + pm.collectionVariables.get('labelSuffix'));\r",
 											"});\r",
 											"\r",
 											"//Check if Label color is updated#\r",
 											"pm.test(\"Label color is updated\", function () {\r",
-											"    pm.expect(response.color).to.eql(pm.collectionVariables.get(\"labelColor\"));\r",
+											"    pm.expect(response.color).to.eql(pm.collectionVariables.get('labelColor'));\r",
 											"});\r",
 											"\r",
 											"//Check if Board id is unchanged\r",
 											"pm.test(\"Board id is unchanged\", function () {\r",
-											"    pm.expect(response.idBoard).to.eql(pm.collectionVariables.get(\"boardId\"));\r",
+											"    pm.expect(response.idBoard).to.eql(pm.collectionVariables.get('boardId'));\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -1321,7 +1329,7 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "{{baseURL}}/1/labels/:id?key={{trelloKey}}&token={{trelloToken}}&name=updated name 12&color={{labelColor}}",
+									"raw": "{{baseURL}}/1/labels/:id?key={{trelloKey}}&token={{trelloToken}}&name=updated name {{labelSuffix}}&color={{labelColor}}",
 									"host": [
 										"{{baseURL}}"
 									],
@@ -1341,7 +1349,7 @@
 										},
 										{
 											"key": "name",
-											"value": "updated name 12"
+											"value": "updated name {{labelSuffix}}"
 										},
 										{
 											"key": "color",

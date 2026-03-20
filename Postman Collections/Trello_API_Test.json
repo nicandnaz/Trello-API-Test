@@ -1164,7 +1164,7 @@
 											"\r",
 											"//Check label name\r",
 											"pm.test(\"Label name is correct\", function () {\r",
-											"    pm.expect(response.name).to.be.eql('label name')\r",
+											"    pm.expect(response.name).to.be.eql('label ' + pm.collectionVariables.get(\"labelSuffix\"))\r",
 											"});\r",
 											"\r",
 											"//Check label color \r",
@@ -1219,7 +1219,7 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "{{baseURL}}/1/labels?name=label name&color={{labelColor}}&idBoard={{boardId}}&key={{trelloKey}}&token={{trelloToken}}",
+									"raw": "{{baseURL}}/1/labels?name=label {{labelSuffix}}&color={{labelColor}}&idBoard={{boardId}}&key={{trelloKey}}&token={{trelloToken}}",
 									"host": [
 										"{{baseURL}}"
 									],
@@ -1230,7 +1230,7 @@
 									"query": [
 										{
 											"key": "name",
-											"value": "label name"
+											"value": "label {{labelSuffix}}"
 										},
 										{
 											"key": "color",
@@ -2497,6 +2497,10 @@
 		},
 		{
 			"key": "labelColor",
+			"value": ""
+		},
+		{
+			"key": "labelSuffix",
 			"value": ""
 		}
 	]

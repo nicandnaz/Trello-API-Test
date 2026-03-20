@@ -1365,6 +1365,45 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Delete a label",
+							"id": "514d3d55-b6f5-4b67-9d63-df916c5a2198",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/1/labels/:id?key={{trelloKey}}&token={{trelloToken}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"1",
+										"labels",
+										":id"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trelloKey}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trelloToken}}"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{labelId}}"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"id": "2ddce3bc-b8c3-4942-bfc6-f8815da71e43"

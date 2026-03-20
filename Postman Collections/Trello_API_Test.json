@@ -1368,6 +1368,29 @@
 						},
 						{
 							"name": "Delete a label",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "73a0e3ea-66ec-4e79-b6fc-d48c830418c6",
+										"exec": [
+											"//Check if response status code is 200.\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"})\r",
+											"\r",
+											"//Check label id is deleted.\r",
+											"pm.test(\"Label id is deleted\", function () {\r",
+											"    pm.expect(pm.collectionVariables.get(\"labelId\")).to.be.undefined;;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
 							"id": "514d3d55-b6f5-4b67-9d63-df916c5a2198",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true

@@ -1264,6 +1264,43 @@
 										"packages": {},
 										"requests": {}
 									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "bcb4b433-195b-4afe-bf66-02affc6e7f5d",
+										"exec": [
+											"//Check if response status code is 200.\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"})\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"//Check if Label ID is unchanged\r",
+											"pm.test(\"Label ID is unchanged\", function () {\r",
+											"    pm.expect(response.id).to.eql(pm.collectionVariables.get(\"labelId\"));\r",
+											"});\r",
+											"\r",
+											"//Check if Label name is updated\r",
+											"pm.test(\"Label name is updated\", function () {\r",
+											"    pm.expect(response.name).to.eql(\"updated name 12\");\r",
+											"});\r",
+											"\r",
+											"//Check if Label color is updated#\r",
+											"pm.test(\"Label color is updated\", function () {\r",
+											"    pm.expect(response.color).to.eql(pm.collectionVariables.get(\"labelColor\"));\r",
+											"});\r",
+											"\r",
+											"//Check if Board id is unchanged\r",
+											"pm.test(\"Board id is unchanged\", function () {\r",
+											"    pm.expect(response.idBoard).to.eql(pm.collectionVariables.get(\"boardId\"));\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
 								}
 							],
 							"id": "2e0d0f30-2b81-491c-90ba-1af6ef5d854e",

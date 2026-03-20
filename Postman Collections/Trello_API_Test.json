@@ -1383,11 +1383,19 @@
 											"pm.test(\"Label id is deleted\", function () {\r",
 											"    pm.expect(pm.collectionVariables.get(\"labelId\")).to.be.undefined;;\r",
 											"});\r",
+											"\r",
 											""
 										],
 										"type": "text/javascript",
 										"packages": {},
 										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"packages": {},
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -1397,6 +1405,45 @@
 							},
 							"request": {
 								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/1/labels/:id?key={{trelloKey}}&token={{trelloToken}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"1",
+										"labels",
+										":id"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trelloKey}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trelloToken}}"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{labelId}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a label",
+							"id": "6435d2db-1b7b-49b3-b00a-3352280ce51e",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
 								"header": [],
 								"url": {
 									"raw": "{{baseURL}}/1/labels/:id?key={{trelloKey}}&token={{trelloToken}}",
@@ -2465,7 +2512,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "a7f0d6dc-f4b9-4df2-b097-f5800abdf815",
+				"id": "1dcd7dba-8d89-4801-acf7-c8aea727f460",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -2477,7 +2524,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "fd2c6e13-bb34-46fd-9c37-ca98c72bd3e4",
+				"id": "c397d6e4-a448-436b-801f-edd27960f89c",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -2502,7 +2549,7 @@
 		},
 		{
 			"key": "boardId",
-			"value": "69b9db24f7e16ca7fb4117a6"
+			"value": "69bac3e15a51807e4a217ef4"
 		},
 		{
 			"key": "listId",
@@ -2510,11 +2557,11 @@
 		},
 		{
 			"key": "cardId",
-			"value": "69b9e448bd8e52773f93fbb8"
+			"value": "69bc79f688d6b74a40c908cc"
 		},
 		{
 			"key": "todoListId",
-			"value": "69b9e091b2994bfa94d628d0"
+			"value": "69bc79f3a2d712dcc646bf40"
 		},
 		{
 			"key": "doneListId",
@@ -2523,23 +2570,24 @@
 		{
 			"key": "existingboardId",
 			"value": [
-				"69b8875205a516d22e37b11e",
-				"69b887520d07b139225710e7",
-				"69b887515c2d7628a325b61b",
-				"69b8875143d2adfabd7398fd"
+				"69bac3e15a51807e4a217ef4",
+				"69bac3e2b2e7e18e1893129e",
+				"69bac3e3c52c87d16b409717",
+				"69bac3e40f5760cb3be8505a",
+				"69bc791b187e0fe93deffeff"
 			]
 		},
 		{
 			"key": "todeleteboardId",
-			"value": "69b857914f2ff5c559c2deaa"
+			"value": null
 		},
 		{
 			"key": "boardSuffix",
-			"value": 2
+			"value": 6
 		},
 		{
 			"key": "todolistSuffix",
-			"value": 6
+			"value": 8
 		},
 		{
 			"key": "donelistSuffix",
@@ -2547,11 +2595,11 @@
 		},
 		{
 			"key": "cardSuffix",
-			"value": 5
+			"value": 9
 		},
 		{
 			"key": "count",
-			"value": 0
+			"value": 3
 		},
 		{
 			"key": "numberOfBoards",
@@ -2559,19 +2607,19 @@
 		},
 		{
 			"key": "cardToDelete",
-			"value": "69b9e3f8a05a1aa5b3ddf3c7"
+			"value": "69b9e4ef8e582c87eaec21bc"
 		},
 		{
 			"key": "labelId",
-			"value": ""
+			"value": "69bddad0e433a2788c7f4aef"
 		},
 		{
 			"key": "labelColor",
-			"value": ""
+			"value": "red"
 		},
 		{
 			"key": "labelSuffix",
-			"value": ""
+			"value": 7
 		}
 	]
 }

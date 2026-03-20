@@ -1438,6 +1438,46 @@
 						},
 						{
 							"name": "Get a label",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c8a536fa-5087-4ad8-b08c-9c07ab1d52ed",
+										"exec": [
+											"//Check if response status code is 200.\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"})\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"//Check created label id is a string and stored to a variable for later use.\r",
+											"pm.test(\"Label id is correct\", function () {\r",
+											"    pm.expect(response.id).to.be.string\r",
+											"    pm.collectionVariables.set(\"labelId\", response.id)\r",
+											"});\r",
+											"\r",
+											"//Check label name\r",
+											"pm.test(\"Label name is correct\", function () {\r",
+											"    pm.expect(response.name).to.be.eql('label ' + pm.collectionVariables.get(\"labelSuffix\"))\r",
+											"});\r",
+											"\r",
+											"//Check label color \r",
+											"pm.test(\"Label color is correct\", function () {\r",
+											"    pm.expect(response.color).to.be.eql(pm.collectionVariables.get(\"labelColor\"))\r",
+											"});\r",
+											"\r",
+											"//Check if under correct board id\r",
+											"pm.test(\"Label board id is correct\", function () {\r",
+											"    pm.expect(response.idBoard).to.be.eql(pm.collectionVariables.get(\"boardId\"))\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
 							"id": "6435d2db-1b7b-49b3-b00a-3352280ce51e",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true

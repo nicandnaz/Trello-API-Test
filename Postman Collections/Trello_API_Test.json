@@ -1245,14 +1245,69 @@
 							"response": []
 						},
 						{
-							"name": "New Request",
+							"name": "Update a label",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "a2c1f255-bcf9-4680-98af-29aad47ffe36",
+										"exec": [
+											"const color = ['yellow' , 'purple', 'blue', 'red', 'green', 'orange', 'black', 'sky', 'pink', 'lime']\r",
+											"const i = Math.floor(Math.random() * color.length)\r",
+											"const labelColor = color[i]\r",
+											"pm.collectionVariables.set(\"labelColor\", labelColor)\r",
+											"\r",
+											"console.log(labelColor)\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
 							"id": "2e0d0f30-2b81-491c-90ba-1af6ef5d854e",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
 							"request": {
-								"method": "GET",
-								"header": []
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/1/labels/:id?key={{trelloKey}}&token={{trelloToken}}&name=updated name 12&color={{labelColor}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"1",
+										"labels",
+										":id"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trelloKey}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trelloToken}}"
+										},
+										{
+											"key": "name",
+											"value": "updated name 12"
+										},
+										{
+											"key": "color",
+											"value": "{{labelColor}}"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{labelId}}"
+										}
+									]
+								}
 							},
 							"response": []
 						}

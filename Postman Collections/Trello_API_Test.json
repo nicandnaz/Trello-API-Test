@@ -1517,6 +1517,48 @@
 						}
 					],
 					"id": "2ddce3bc-b8c3-4942-bfc6-f8815da71e43"
+				},
+				{
+					"name": "Checklist",
+					"item": [
+						{
+							"name": "Create a checklist",
+							"id": "36f85005-bf9d-43c4-b541-142f723aaf67",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/1/checklists?idCard={{cardId}}&key={{trelloKey}}&token={{trelloToken}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"1",
+										"checklists"
+									],
+									"query": [
+										{
+											"key": "idCard",
+											"value": "{{cardId}}"
+										},
+										{
+											"key": "key",
+											"value": "{{trelloKey}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trelloToken}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "725da0ae-f12c-4c5a-a91b-f43113cf9f7f"
 				}
 			],
 			"id": "e960f95a-723a-459c-985d-86983871d6fb"

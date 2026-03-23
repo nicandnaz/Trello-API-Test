@@ -1597,14 +1597,45 @@
 							"response": []
 						},
 						{
-							"name": "New Request",
+							"name": "Update a checklist",
 							"id": "93aeec67-2769-4954-b29a-29158b7754b7",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
 							"request": {
-								"method": "GET",
-								"header": []
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/1/checklists/:id?key={{trelloKey}}&token={{trelloToken}}&name=Checklist 1",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"1",
+										"checklists",
+										":id"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trelloKey}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trelloToken}}"
+										},
+										{
+											"key": "name",
+											"value": "Checklist 1"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "69c1b35104c37050050fe24f"
+										}
+									]
+								}
 							},
 							"response": []
 						}

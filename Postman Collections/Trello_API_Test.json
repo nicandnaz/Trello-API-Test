@@ -1556,6 +1556,57 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Get a checklist",
+							"id": "2cc6ac1f-e1f5-47ee-af1c-51d240a1fe54",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/1/checklists/:id?key={{trelloKey}}&token={{trelloToken}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"1",
+										"checklists",
+										":id"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trelloKey}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trelloToken}}"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "69c1b35104c37050050fe24f"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"id": "93aeec67-2769-4954-b29a-29158b7754b7",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
 						}
 					],
 					"id": "725da0ae-f12c-4c5a-a91b-f43113cf9f7f"

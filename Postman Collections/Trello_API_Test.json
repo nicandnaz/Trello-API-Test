@@ -1633,7 +1633,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "69c1b35104c37050050fe24f"
+											"value": "{{checklistId}}"
 										}
 									]
 								}

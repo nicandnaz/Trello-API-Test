@@ -1780,7 +1780,7 @@
 											"\r",
 											"//Check checklist id is deleted.\r",
 											"pm.test(\"Checklist id is deleted\", function () {\r",
-											"    pm.expect(pm.collectionVariables.get(\"checklistId\")).to.be.undefined;;\r",
+											"    pm.expect(pm.collectionVariables.get('checklistId')).to.be.undefined;;\r",
 											"});\r",
 											"\r",
 											""
@@ -2865,7 +2865,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "1dcd7dba-8d89-4801-acf7-c8aea727f460",
+				"id": "eca2a976-dcb9-4d13-aa8d-fc5572dd51c3",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -2877,7 +2877,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "c397d6e4-a448-436b-801f-edd27960f89c",
+				"id": "0b6ed270-2bc8-4b76-b5b6-87cd7b5c6cf5",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -2964,19 +2964,19 @@
 		},
 		{
 			"key": "labelId",
-			"value": "69bddad0e433a2788c7f4aef"
+			"value": "69bddaf551f2850f34bbdfa0"
 		},
 		{
 			"key": "labelColor",
-			"value": "red"
+			"value": "sky"
 		},
 		{
 			"key": "labelSuffix",
-			"value": 7
+			"value": 8
 		},
 		{
 			"key": "checklistId",
-			"value": ""
+			"value": "69c9a2affb2e66928ba604a8"
 		}
 	]
 }

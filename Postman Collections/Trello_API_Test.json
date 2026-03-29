@@ -1603,6 +1603,47 @@
 						},
 						{
 							"name": "Get a checklist",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ccc3251e-8faf-4179-ad94-72c65c83f0df",
+										"exec": [
+											"//Check if response status code is 200.\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"})\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"//Check if checklist ID is correct\r",
+											"pm.test(\"Checklist ID is correct\", function () {\r",
+											"    pm.expect(response.id).to.eql(pm.collectionVariables.get('checklistId'));\r",
+											"});\r",
+											"\r",
+											"//Check if checklist name is correct\r",
+											"pm.test(\"Checklist Name is correct\", function () {\r",
+											"    pm.expect(response.name).to.eql('Checklist 1');\r",
+											"});\r",
+											"\r",
+											"//Check if checklist is in the correct board\r",
+											"pm.test(\"Checklist is in the correct Board\", function () {\r",
+											"    pm.expect(response.idBoard).to.eql(pm.collectionVariables.get('boardId'));\r",
+											"});\r",
+											"\r",
+											"//Check if checlist is in the correct card\r",
+											"//Check if checklist is in the correct board\r",
+											"pm.test(\"Checklist is in the correct Card\", function () {\r",
+											"    pm.expect(response.idCard).to.eql(pm.collectionVariables.get('cardId'));\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
 							"id": "2cc6ac1f-e1f5-47ee-af1c-51d240a1fe54",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -1642,6 +1683,47 @@
 						},
 						{
 							"name": "Update a checklist",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a2c6c641-c48d-43f1-8310-588606ec5e75",
+										"exec": [
+											"//Check if response status code is 200.\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"})\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"//Check if checklist ID is correct\r",
+											"pm.test(\"Checklist ID is correct\", function () {\r",
+											"    pm.expect(response.id).to.eql(pm.collectionVariables.get('checklistId'));\r",
+											"});\r",
+											"\r",
+											"//Check if checklist name is correct\r",
+											"pm.test(\"Checklist Name is updated\", function () {\r",
+											"    pm.expect(response.name).to.eql('Checklist 2');\r",
+											"});\r",
+											"\r",
+											"//Check if checklist is in the correct board\r",
+											"pm.test(\"Checklist is in the correct Board\", function () {\r",
+											"    pm.expect(response.idBoard).to.eql(pm.collectionVariables.get('boardId'));\r",
+											"});\r",
+											"\r",
+											"//Check if checlist is in the correct card\r",
+											"//Check if checklist is in the correct board\r",
+											"pm.test(\"Checklist is in the correct Card\", function () {\r",
+											"    pm.expect(response.idCard).to.eql(pm.collectionVariables.get('cardId'));\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
 							"id": "93aeec67-2769-4954-b29a-29158b7754b7",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -1650,7 +1732,7 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "{{baseURL}}/1/checklists/:id?key={{trelloKey}}&token={{trelloToken}}&name=Checklist 1",
+									"raw": "{{baseURL}}/1/checklists/:id?key={{trelloKey}}&token={{trelloToken}}&name=Checklist 2",
 									"host": [
 										"{{baseURL}}"
 									],
@@ -1670,13 +1752,13 @@
 										},
 										{
 											"key": "name",
-											"value": "Checklist 1"
+											"value": "Checklist 2"
 										}
 									],
 									"variable": [
 										{
 											"key": "id",
-											"value": "69c1b35104c37050050fe24f"
+											"value": "{{checklistId}}"
 										}
 									]
 								}
@@ -1685,6 +1767,30 @@
 						},
 						{
 							"name": "Delete a checklist",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "dcb1c3a7-16c1-42e8-a8f6-80b6ba5d1691",
+										"exec": [
+											"//Check if response status code is 200.\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"})\r",
+											"\r",
+											"//Check checklist id is deleted.\r",
+											"pm.test(\"Checklist id is deleted\", function () {\r",
+											"    pm.expect(pm.collectionVariables.get(\"checklistId\")).to.be.undefined;;\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
 							"id": "d2816939-1e7c-4f05-bc88-01ca1c0bf456",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -1715,7 +1821,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "69c1b35104c37050050fe24f"
+											"value": "{{checklistId}}"
 										}
 									]
 								}
